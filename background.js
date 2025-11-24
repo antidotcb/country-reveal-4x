@@ -388,8 +388,7 @@ async function executeFetch(screenName) {
         });
         return {
             country: country,
-            about_profile: about,
-            user: result || null
+            about_profile: about
         };
 
     } catch (error) {
