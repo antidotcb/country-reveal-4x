@@ -37,6 +37,42 @@ chrome.runtime.onMessage.addListener((msg) => {
 const processedElements = new WeakSet();
 const localCountryCache = new Map();
 
+function insertTempIndicator(element, emoji = '⏳', tooltip = 'Pending') {
+    if (!element || !element.isConnected) return;
+    if (element.querySelector('.x-country-temp')) return;
+
+    const temp = document.createElement('span');
+    temp.className = 'x-country-flag x-country-temp';
+    temp.textContent = emoji;
+    temp.setAttribute('title', tooltip);
+    temp.setAttribute('data-tooltip', tooltip);
+    temp.setAttribute('tabindex', '0');
+    temp.setAttribute('role', 'button');
+
+    temp.addEventListener('mouseenter', () => showTooltipFor(temp));
+    temp.addEventListener('mouseleave', () => hideTooltip());
+    temp.addEventListener('focus', () => showTooltipFor(temp));
+    temp.addEventListener('blur', () => hideTooltip());
+
+    const textContainer = element.querySelector('div[dir="ltr"] > span') || element;
+    if (textContainer) {
+        textContainer.prepend(temp);
+    } else {
+        element.prepend(temp);
+    }
+}
+
+function clearTempIndicator(element) {
+    if (!element) return;
+    const temp = element.querySelector('.x-country-temp');
+    if (temp && temp.parentNode) {
+        try {
+            temp.parentNode.removeChild(temp);
+        } catch (e) {
+        }
+    }
+}
+
 /**
  * @typedef {object} UsernameChanges
  * @property {number|null} count
@@ -82,9 +118,19 @@ function processLink(element) {
 
     chrome.runtime.sendMessage({action: "getCountry", screenName: username})
         .then((response) => {
-            if (response && response.error === "NOT_READY") {
-                log("WARN", `Background not ready (sniffing needed). Skipped @${username}`);
-                processedElements.delete(element);
+            if (response && response.error) {
+                log("WARN", `Background returned error for @${username}:`, response.error);
+
+                insertTempIndicator(element, '⏳', String(response.error || 'Pending'));
+
+                const RETRY_DELAY_MS = 15000;
+                setTimeout(() => {
+                    clearTempIndicator(element);
+                    processedElements.delete(element);
+                    if (element.isConnected) {
+                        processLink(element);
+                    }
+                }, RETRY_DELAY_MS);
                 return;
             }
 
@@ -108,7 +154,7 @@ function processLink(element) {
                 }
 
                 if (!info.country && typeof response === 'string') {
-                    info.country = response;
+                    console.log("DEBUG", "Response country detection failed", response);
                 }
 
                 localCountryCache.set(username, info);
@@ -124,6 +170,14 @@ function processLink(element) {
         })
         .catch((error) => {
             log("ERR", `Message failed for @${username}:`, error);
+            insertTempIndicator(element, '⏳', String(error));
+            const RETRY_DELAY_MS = 15000;
+            setTimeout(() => {
+                clearTempIndicator(element);
+                processedElements.delete(element);
+                if (element.isConnected) processLink(element);
+            }, RETRY_DELAY_MS);
+
             processedElements.delete(element);
         });
 }

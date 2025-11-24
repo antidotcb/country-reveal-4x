@@ -574,7 +574,12 @@ function performWipe(sendResponse) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "getCountry") {
-        getCountrySmart(request.screenName || request.username).then(sendResponse);
+        getCountrySmart(request.screenName || request.username)
+            .then(sendResponse)
+            .catch(err => {
+                logger("QUEUE", "⚠️ getCountry failed:", err);
+                sendResponse({error: String(err)});
+            });
     }
 
     if (request.action === "getStats") {
