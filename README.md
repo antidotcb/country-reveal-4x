@@ -4,6 +4,10 @@ A lightweight Chrome extension that shows the country of any X profile directly 
 profile views. It reads the public About Account data from X, interprets it, caches it locally, and displays a small
 flag next to each username. Everything works entirely in the browser with zero external servers.
 
+## IMPORTANT
+
+Right after installing the extension, open https://x.com/x/about once so the extension can initialize and work correctly.
+
 ## Features
 
 - Adds a country flag next to every visible username on X.
