@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>X Country Revealer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="section">
+    <div class="row">
+        <span class="label">Status</span>
+        <span class="value" id="status-text">Checking...</span>
+    </div>
+    <div class="row">
+        <span class="label">API Quota</span>
+        <span class="value" id="quota-text">...</span>
+    </div>
+    <div class="row" id="lockdown-timer-row" style="display:none;">
+        <span class="label">Unlocks in</span>
+        <span class="value status-lockdown" id="lockdown-timer">0s</span>
+    </div>
+</div>
+
+<div class="section queue-box">
+    <div class="row">
+        <span class="label">Queue Length</span>
+        <span class="value" id="q-len">0</span>
+    </div>
+    <div class="row">
+        <span class="label">Session Max</span>
+        <span class="value" id="q-max">0</span>
+    </div>
+    <div class="row">
+        <span class="label">Next Up</span>
+        <span class="value" id="q-next"
+              style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">-</span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="row">
+        <span class="label">Session Fetches</span>
+        <span class="value" id="stat-session">0</span>
+    </div>
+    <div class="row">
+        <span class="label">Total Cached</span>
+        <span class="value" id="stat-total">0</span>
+    </div>
+    <div class="row">
+        <span class="label">Cache Size</span>
+        <span class="value" id="stat-size">0 KB</span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="row" style="margin-bottom: 8px;">
+        <span class="label" style="color: white; font-weight: bold;">Top 5 Countries</span>
+    </div>
+    <ul class="country-list" id="top-countries">
+        <li class="country-item"><span class="label">Loading...</span></li>
+    </ul>
+</div>
+
+<button class="refresh-btn" id="refresh-btn">Refresh Data</button>
+
+<button class="danger-btn" id="clear-btn">Clear Database</button>
+
+<script src="utils.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* popup.css */
+body {
+    width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #15202b; /* X Dim Background */
+    color: #ffffff;
+    margin: 0;
+    padding: 16px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 16px;
+    border-bottom: 1px solid #38444d;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.section {
+    margin-bottom: 16px;
+    background: #192734;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #38444d;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.row:last-child {
+    margin-bottom: 0;
+}
+
+.label {
+    color: #8899a6;
+}
+
+.value {
+    font-weight: bold;
+}
+
+.status-active {
+    color: #00ba7c;
+}
+
+.status-lockdown {
+    color: #f91880;
+}
+
+/* Queue Box */
+.queue-box {
+    font-size: 12px;
+}
+
+/* Top Countries List */
+.country-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.country-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 13px;
+    border-bottom: 1px solid #38444d;
+}
+
+.country-item:last-child {
+    border-bottom: none;
+}
+
+.refresh-btn {
+    width: 100%;
+    padding: 8px;
+    background: #1d9bf0;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.refresh-btn:hover {
+    background: #1a8cd8;
+}
+
+.danger-btn {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid #f4212e; /* X Red border */
+    border-radius: 20px;
+    color: #f4212e;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.danger-btn:hover {
+    background: rgba(244, 33, 46, 0.1); /* Subtle red tint on hover */
+}
+
+.danger-btn:active {
+    background: #f4212e;
+    color: white;
+}

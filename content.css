@@ -1,0 +1,94 @@
+/* content.css */
+.x-country-flag {
+    margin-right: 4px;
+    cursor: help;
+    font-size: 1.1em;
+    /* Optional: Add a subtle animation or better alignment */
+    vertical-align: middle;
+    position: relative; /* needed for tooltip positioning */
+    /* Use a monospace stack for a hacker-y look for the flag label itself */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+}
+
+/* Custom tooltip using data-tooltip attribute */
+.x-country-flag[data-tooltip]:hover::after,
+.x-country-flag[data-tooltip]:focus::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.x-country-flag::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%) translateY(0); /* no movement */
+    transform-origin: bottom center;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 14px; /* Larger tooltip text (you can increase this) */
+    line-height: 1.2;
+    z-index: 999999;
+    opacity: 0;
+    transition: none; /* instant show/hide */
+    pointer-events: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    /* Monospace "hacker" font stack for pseudo tooltip */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+}
+
+/* Optional: allow wrapping on narrow screens */
+.x-country-flag::after {
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Allow keyboard focus to show tooltip */
+.x-country-flag:focus {
+    outline: none;
+}
+
+/* Make tooltip text larger on high-DPI or if user prefers larger font */
+@media (min-resolution: 2dppx) {
+    .x-country-flag::after { font-size: 15px; }
+}
+
+/* Document-mounted tooltip (used by JS to avoid clipping) */
+.x-country-flag-tooltip {
+    position: fixed; /* positioned by JS */
+    left: -9999px; /* default offscreen */
+    top: -9999px;  /* default offscreen */
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 16px; /* Larger tooltip text */
+    line-height: 1.2;
+    max-width: 320px;
+    word-break: break-word;
+    white-space: normal;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+    z-index: 2147483647; /* very high to overlay web content */
+    opacity: 0;
+    transition: none; /* instant show/hide */
+    pointer-events: none; /* JS toggles pointerEvents when visible */
+    will-change: opacity, left, top;
+    /* Monospace stack for the mounted tooltip */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+}
+
+/* Visible state - controlled by JS by adding/removing the 'visible' class */
+.x-country-flag-tooltip.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Slightly smaller on very small screens */
+@media (max-width: 420px) {
+    .x-country-flag-tooltip { font-size: 14px; padding: 8px 10px; }
+}
