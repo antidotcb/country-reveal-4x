@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Flags for X - Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="setup.css">
+</head>
+<body>
+<div class="card">
+    <div class="card-inner">
+        <div class="logo-row">
+            <div class="logo-icon">
+                <img src="resources/logo_128.png" alt="Extension logo">
+            </div>
+            <div class="logo-text">Country Revealer 4X</div>
+        </div>
+
+        <h1 class="title">Finish setup</h1>
+        <p class="subtitle">
+            One short step to make flags show up next to usernames on X.
+        </p>
+
+        <div class="section">
+            <div class="section-title">Why this is needed</div>
+            <ul class="section-list">
+                <li>
+                    <span class="bullet">•</span>
+                    <span>The extension has to visit an X about page once to read internal data that X uses for accounts.</span>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <span>No extra permissions or password access. It only reuses your existing logged-in session.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">If something breaks later</div>
+            <ul class="section-list">
+                <li>
+                    <span class="bullet">•</span>
+                    <span>If flags ever stop loading, just open any X about page again, for example <span
+                            class="code-inline">https://x.com/x/about</span>.</span>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <span>This refreshes the internal values and the extension will recover automatically.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="button-row">
+            <button id="init-btn" class="primary-button">
+                <span class="icon">🚀</span>
+                <span>Open X about page and initialize</span>
+            </button>
+
+            <div class="hint-row">
+                <div class="hint-icon">ℹ️</div>
+                <div>
+                    Keep the X tab open until the page finishes loading. You can close this setup window afterward.
+                </div>
+            </div>
+
+            <div id="status" class="status muted">
+                Waiting for you to run the initialization.
+            </div>
+        </div>
+    </div>
+</div>
+<script src="setup.js"></script>
+</body>
+</html>
