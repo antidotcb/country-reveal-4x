@@ -22,7 +22,8 @@
   "permissions": [
     "cookies",
     "storage",
-    "webRequest"
+    "webRequest",
+    "tabs"
   ],
   "host_permissions": [
     "https://x.com/*",

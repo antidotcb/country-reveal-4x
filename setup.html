@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Country Flags for X - Setup</title>
+    <title>Setup Country Revealer 4X</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="setup.css">
 </head>
@@ -13,39 +13,28 @@
             <div class="logo-icon">
                 <img src="resources/logo_128.png" alt="Extension logo">
             </div>
-            <div class="logo-text">Country Revealer 4X</div>
+            <div class="logo-text"><h1>Country Revealer 4X</h1></div>
         </div>
-
-        <h1 class="title">Finish setup</h1>
+        <h1 class="title">Initial Setup</h1>
         <p class="subtitle">
-            One short step to make flags show up next to usernames on X.
+            To get started, the extension needs to capture some required info from X.
+            This is a one-time process.
         </p>
 
         <div class="section">
-            <div class="section-title">Why this is needed</div>
+            <h2 class="section-title">What will happen:</h2>
             <ul class="section-list">
                 <li>
-                    <span class="bullet">•</span>
-                    <span>The extension has to visit an X about page once to read internal data that X uses for accounts.</span>
+                    <span class="bullet">1.</span>
+                    <span>A new tab with <code class="code-inline">x.com</code> will be opened.</span>
                 </li>
                 <li>
-                    <span class="bullet">•</span>
-                    <span>No extra permissions or password access. It only reuses your existing logged-in session.</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="section-title">If something breaks later</div>
-            <ul class="section-list">
-                <li>
-                    <span class="bullet">•</span>
-                    <span>If flags ever stop loading, just open any X about page again, for example <span
-                            class="code-inline">https://x.com/x/about</span>.</span>
+                    <span class="bullet">2.</span>
+                    <span>The extension will automatically detect and save the necessary API keys while you browse.</span>
                 </li>
                 <li>
-                    <span class="bullet">•</span>
-                    <span>This refreshes the internal values and the extension will recover automatically.</span>
+                    <span class="bullet">3.</span>
+                    <span>Once ready, this page will be closed automatically.</span>
                 </li>
             </ul>
         </div>
@@ -56,15 +45,14 @@
                 <span>Open X about page and initialize</span>
             </button>
 
-            <div class="hint-row">
-                <div class="hint-icon">ℹ️</div>
-                <div>
-                    Keep the X tab open until the page finishes loading. You can close this setup window afterward.
-                </div>
-            </div>
+            <button id="close-btn" class="primary-button" style="display: none;">
+                <span class="icon">🚀</span>
+                <span>Open X about page and initialize</span>
+            </button>
 
-            <div id="status" class="status muted">
-                Waiting for you to run the initialization.
+            <div class="hint-row">
+                <span class="hint-icon">💡</span>
+                <span id="status">Please open and browse x.com in another tab. The extension will become ready automatically.</span>
             </div>
         </div>
     </div>

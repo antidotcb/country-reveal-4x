@@ -585,5 +585,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         performWipe(sendResponse);
     }
 
+    if (request.action === "isReady") {
+        const isReady = !!(state.queryId && state.bearerToken);
+        sendResponse({ready: isReady});
+    }
+
     return true;
+});
+
+chrome.runtime.onInstalled.addListener((details) => {
+    if (details.reason === "install") {
+        // noinspection JSIgnoredPromiseFromCall
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("setup.html")
+        });
+    }
 });

@@ -70,10 +70,9 @@ body {
 }
 
 .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 128px;
+    height: 128px;
     border-radius: 10px;
-    background: radial-gradient(circle at 30% 20%, #ffffff, #8ecbff 45%, #1d9bf0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,8 +80,8 @@ body {
 }
 
 .logo-icon img {
-    width: 26px;
-    height: 26px;
+    width: 128px;
+    height: 128px;
     border-radius: 6px;
     display: block;
 }
@@ -189,6 +188,13 @@ body {
 .primary-button:active {
     transform: translateY(0);
     box-shadow: 0 0 0 1px rgba(29,155,240,0.8), 0 4px 10px rgba(29,155,240,0.5);
+}
+
+.primary-button:disabled {
+    filter: grayscale(80%);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 .primary-button span.icon {
