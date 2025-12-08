@@ -24,12 +24,12 @@ function checkReadyState() {
             close_btn.textContent = "OK";
             close_btn.style.display = "block";
             close_btn.disabled = false;
-            window.close();
+            // window.close();
         } else {
-            setStatus("Waiting for initialization... Please browse x.com to capture necessary data.", "muted");
+            setStatus("Waiting for initialization... Please browse https://x.com/x/about to capture necessary data.", "muted");
             button.disabled = true;
             button.style.display = "none";
-            setTimeout(checkReadyState, 500); // Poll every 2 seconds
+            setTimeout(checkReadyState, 500); // Poll every 500ms
         }
     });
 }
@@ -40,16 +40,17 @@ button.addEventListener("click", () => {
     button.disabled = true;
     setStatus("Opening X about page in a new tab...", "muted");
 
-    chrome.tabs.create({url: "https://x.com/x/about"}, () => {
-        if (chrome.runtime.lastError) {
-            setStatus("Could not open X. Please open https://x.com/x/about manually.", "error");
-            button.disabled = false;
-            return;
-        }
+    const newWin = window.open("https://x.com/x/about", "_blank");
+    if (!newWin) {
+        setStatus("Could not open X. Please open https://x.com/x/about manually.", "error");
+        button.disabled = false;
+        return;
+    }
+
+    newWin.addEventListener("loadstart", () => {
         chrome.storage.local.set({initialized: true}, () => {
             setStatus("Initialization started. Once the X page finishes loading, the extension is ready.", "ready");
         });
-
-        checkReadyState();
     });
+    checkReadyState();
 });

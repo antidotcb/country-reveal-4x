@@ -23,8 +23,8 @@ SOFTWARE. */
 const DEBUG = false;
 const CONFIG = {
     TIMING: {
-        REQUEST_DELAY: 2500,
-        VARIANCE: 1000,
+        REQUEST_DELAY: 500,
+        VARIANCE: 100,
         BACKOFF_429: 700000,
         FETCH_TIMEOUT: 10000
     },

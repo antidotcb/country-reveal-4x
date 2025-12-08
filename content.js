@@ -197,7 +197,7 @@ function insertFlag(element, info) {
     flagSpan.className = "x-country-flag";
 
     const shield = locationAccurate === false ? '🛡' : '';
-    const flagEmoji = getFlagEmoji(country);
+    const flagEmoji = locationAccurate === true ? getFlagEmoji(country) : '';
     const changeSymbol = usernameChanges > 2 ? getCircledNumber(usernameChanges) : '';
 
     flagSpan.textContent = `${shield}${flagEmoji}${changeSymbol ? ' ' + changeSymbol : ''}`;

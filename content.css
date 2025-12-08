@@ -30,6 +30,10 @@ SOFTWARE. */
     position: relative; /* needed for tooltip positioning */
     /* Use a monospace stack for a hacker-y look for the flag label itself */
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    background-color: #222222;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: white;
 }
 
 /* Custom tooltip using data-tooltip attribute */
