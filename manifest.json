@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Country Revealer for X",
   "description": "See the registered country of origin and username history for accounts on X (formerly Twitter).",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "icons": {
     "16": "resources/logo_16.png",
     "32": "resources/logo_32.png",
